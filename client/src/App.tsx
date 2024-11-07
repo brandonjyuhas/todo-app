@@ -37,14 +37,15 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="h-screen bg-slate-700 text-white mx-auto flex flex-col items-center space-y-4">
+      <div className="">
         {!data ? "Loading..." : (
         <ul>
           {data.map((todo: any) => (
             <li key={todo.id}>
             <input
               type="checkbox"
+              className="mr-2"
               onChange={() => {
                 fetch(`/todos/${todo.id}/${todo.completedAt ? 'uncompletions' : 'completions'}`, {
                   method: 'POST',
@@ -65,17 +66,19 @@ function App() {
           </li>          ))}
         </ul>
       )}
-      </header>
+      </div>
 
       <div>
         <div>
           <input
             type="text"
+            className="text-black px-2 py-1 rounded-md focus:outline-none"
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value)}
             placeholder="Enter new todo"
           />
-          <button onClick={handleSubmit}>Add Todo</button>
+          <button onClick={handleSubmit} className="ml-2 bg-blue-300 text-black font-bold px-2 py-1 rounded-md"
+          >Add Todo</button>
         </div>
       </div>
     </div>
